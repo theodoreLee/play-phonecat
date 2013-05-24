@@ -3,4 +3,5 @@ describe "phoneCat controllers", ->
     it 'should create "phones" model with 3 phones', ->
       scope = {}
       ctrl = new PhoneListCtrl(scope)
-      expect(scope.phones.length).toBe(3)
+
+      expect(scope.phones.length).toBe 3

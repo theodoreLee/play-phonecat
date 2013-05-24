@@ -9,9 +9,11 @@ object Application extends Controller {
     Ok(views.html.index("Your new application is ready."))
   }
 
-  def test(target:String) = Action {
-    play.api.Play.current.mode match {
-      case Mode.Prod => NotFound
+  def test(target:String, mode:String) = Action {
+    val playMode = play.api.Play.current.mode
+    (playMode, mode) match {
+      case (Mode.Prod, _) => NotFound
+      case (_,"scenario") => Ok(views.html.testScenarios())
       case _ => Ok(views.html.test(target))
     }
   }
