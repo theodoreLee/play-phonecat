@@ -10,6 +10,9 @@ PhoneListCtrl = ['$scope', '$http', ($scope, $http)->
   $scope.orderProp = 'age'
 ]
 
-PhoneDetailCtrl = ['$scope', '$routeParams', ($scope, $routeParams) ->
-  $scope.phoneId = $routeParams.phoneId
+PhoneDetailCtrl = ['$scope', '$routeParams', '$http', ($scope, $routeParams, $http) ->
+  $http.get("phones/#{$routeParams.phoneId}.json")
+    .success((data)->
+      $scope.phone = data
+    )
 ]

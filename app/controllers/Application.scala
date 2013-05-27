@@ -11,11 +11,11 @@ object Application extends Controller {
 
 
   def json(fileName:String) = Action {
-    Redirect(routes.Assets.at(s"/json/$fileName"))
+    Redirect(routes.Assets.at(s"json/$fileName"))
   }
 
   def retrieveImage(fileName:String) = Action {
-    Redirect(routes.Assets.at(s"/images/phones/$fileName"))
+    Redirect(routes.Assets.at(s"images/phones/$fileName"))
   }
 
   def test(target:String, mode:String) = Action {
