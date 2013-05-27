@@ -11,7 +11,8 @@ object ApplicationBuild extends Build {
   val main = play.Project(appName, appVersion, appDependencies)
     .settings(
       lessEntryPoints <<= (sourceDirectory in Compile)(base => (
-        (base / "assets" / "stylesheets" / "bootstrap" / "bootstrap.less")
+        (base / "assets" / "stylesheets" / "bootstrap" / "bootstrap.less") +++
+          (base / "assets" / "stylesheets" / "main.less")
       ))
     )
 }

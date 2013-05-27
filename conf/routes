@@ -5,9 +5,12 @@
 # Home page
 GET     /                           controllers.Application.index
 
-GET     /phones/phones.json            controllers.Application.phones
 
 GET     /test                       controllers.Application.test(target:String, mode:String ?= "test")
+
+
+GET     /phones/*file               controllers.Application.json(file)
+GET     /img/phones/*file           controllers.Application.retrieveImage(file)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

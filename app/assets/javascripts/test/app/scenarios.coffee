@@ -21,10 +21,15 @@ describe "PhoneCat App", ->
           "MOTOROLA XOOM\u2122"
         ])
 
-      select('orderProp').option('Alphabetical');
+      select('orderProp').option('Alphabetical')
 
       expect(repeater('.phones li', 'Phone List').column('phone.name'))
         .toEqual([
           "MOTOROLA XOOM\u2122",
           "Motorola XOOM\u2122 with Wi-Fi"
         ])
+
+    it 'should render phone specific links', ()->
+      input('query').enter('nexus')
+      element('.phones li a').click()
+      expect(browser().location().url()).toBe('/phones/nexus-s')
