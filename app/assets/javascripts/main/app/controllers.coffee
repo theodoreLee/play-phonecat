@@ -1,10 +1,11 @@
-PhoneListCtrl = ['$scope', 'Phone', ($scope, Phone)->
+module = angular.module('phonecat.controllers',[])
+module.controller 'PhoneListCtrl', ['$scope', 'Phone', ($scope, Phone)->
   $scope.phones = Phone.query()
 
   $scope.orderProp = 'age'
 ]
 
-PhoneDetailCtrl = ['$scope', '$routeParams', 'Phone', ($scope, $routeParams, Phone) ->
+module.controller 'PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone', ($scope, $routeParams, Phone) ->
   $scope.phone = Phone.get {phoneId:$routeParams.phoneId}, (phone)->
     $scope.mainImageUrl = phone.images[0]
 
