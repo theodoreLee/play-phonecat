@@ -1,4 +1,4 @@
-angular.module('phonecat', ["phonecat.filters"])
+angular.module('phonecat', ["phonecat.filters", "phonecat.services"])
   .config ['$routeProvider', ($routeProvider)->
     template = "/assets/partials"
 

@@ -1,4 +1,13 @@
 describe "phoneCat controllers", ->
+  beforeEach ->
+    @addMatchers(
+      toEqualData: (expected)->
+        angular.equals(@actual, expected)
+    )
+
+  beforeEach module('phonecat.services')
+
+
   describe "PhoneListCtrl", ->
     scope = undefined
     ctrl = undefined
@@ -16,10 +25,10 @@ describe "phoneCat controllers", ->
 
 
     it 'should create "phones" model with 2 phones fetched from xhr', ->
-      expect(scope.phones).toBeUndefined()
+      expect(scope.phones).toEqual []
       $httpBackend.flush()
 
-      expect(scope.phones).toEqual([
+      expect(scope.phones).toEqualData([
         {name: 'Nexus S'},
         {name: 'Motorola DROID'}
       ])
@@ -29,15 +38,18 @@ describe "phoneCat controllers", ->
       expect(scope.orderProp).toBe "age"
 
 
-
   describe 'PhoneDetailCtrl', ->
     scope = undefined
     $httpBackend = undefined
     ctrl = undefined
+    xyzPhoneData = ->
+      name: 'phone xyz'
+      images: ['images/url1.png', 'images/url2.png']
+
 
     beforeEach inject (_$httpBackend_, $rootScope, $routeParams, $controller)->
       $httpBackend = _$httpBackend_
-      $httpBackend.expectGET('phones/xyz.json').respond({name:'phone xyz'})
+      $httpBackend.expectGET('phones/xyz.json').respond(xyzPhoneData())
 
       $routeParams.phoneId = 'xyz'
       scope = $rootScope.$new()
@@ -45,7 +57,7 @@ describe "phoneCat controllers", ->
 
 
     it 'should fetch phone detail', ->
-      expect(scope.phone).toBeUndefined()
+      expect(scope.phone).toEqualData {}
       $httpBackend.flush()
 
-      expect(scope.phone).toEqual({name:'phone xyz'})
+      expect(scope.phone).toEqualData xyzPhoneData()
