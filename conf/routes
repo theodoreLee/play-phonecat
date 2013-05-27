@@ -5,6 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index
 
+GET     /phones/phones.json            controllers.Application.phones
 
 GET     /test                       controllers.Application.test(target:String, mode:String ?= "test")
 
