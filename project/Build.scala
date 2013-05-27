@@ -10,6 +10,7 @@ object ApplicationBuild extends Build {
 
   val main = play.Project(appName, appVersion, appDependencies)
     .settings(
+      coffeescriptOptions := Seq("bare"),
       lessEntryPoints <<= (sourceDirectory in Compile)(base => (
         (base / "assets" / "stylesheets" / "bootstrap" / "bootstrap.less") +++
           (base / "assets" / "stylesheets" / "main.less")

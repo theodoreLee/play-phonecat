@@ -1,4 +1,4 @@
-window.PhoneListCtrl = ['$scope', '$http', ($scope, $http)->
+PhoneListCtrl = ['$scope', '$http', ($scope, $http)->
   #$http makes an HTTP GET request to our web server, asking for phone/phones.json
   # (the url is relative to our index.html file)
   $http.get("phones/phones.json").success(
@@ -8,4 +8,8 @@ window.PhoneListCtrl = ['$scope', '$http', ($scope, $http)->
 
 
   $scope.orderProp = 'age'
+]
+
+PhoneDetailCtrl = ['$scope', '$routeParams', ($scope, $routeParams) ->
+  $scope.phoneId = $routeParams.phoneId
 ]
