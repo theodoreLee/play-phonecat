@@ -14,5 +14,9 @@ PhoneDetailCtrl = ['$scope', '$routeParams', '$http', ($scope, $routeParams, $ht
   $http.get("phones/#{$routeParams.phoneId}.json")
     .success((data)->
       $scope.phone = data
+      $scope.mainImageUrl = data.images[0]
     )
+
+  $scope.setImage = (imageUrl) ->
+    $scope.mainImageUrl = imageUrl
 ]
